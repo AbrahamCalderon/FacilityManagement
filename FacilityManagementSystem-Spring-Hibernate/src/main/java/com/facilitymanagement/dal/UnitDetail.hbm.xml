@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facilitymanagement.model.facility">
+    <class name="AptUnitDetail" table="unitdetail">        
+        <id name="aptId" type="java.lang.Integer" column="unitId"/>
+        <property name="aptDetId" type="java.lang.Integer" column="detailid"/>
+        <property name="length" type="java.lang.Double" column="length" not-null="true"/>
+        <property name="width" type="java.lang.Double" column="width" not-null="true"/>
+        <property name="numRooms" type="java.lang.Integer" column="rooms" not-null="true"/>
+        <property name="numBaths" type="java.lang.Double" column="baths" not-null="true"/>
+        <property name="moreDetail" type="java.lang.String" column="additionalInfo" not-null="false"/>
+    </class>
+</hibernate-mapping>

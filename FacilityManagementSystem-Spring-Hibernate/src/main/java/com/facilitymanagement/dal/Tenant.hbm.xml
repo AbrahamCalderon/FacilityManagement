@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facilitymanagement.model.user">
+    <class name="Tenant" table="tenant">
+        <id name="leaseId" type="java.lang.String" column="leaseId"/>
+        <property name="tenantId" type="java.lang.Integer" column="tenantId"/>
+        <property name="firstName" type="java.lang.String" column="firstname"/>
+        <property name="lastName" type="java.lang.String" column="lastname"/>
+        <property name="dob" type="java.lang.String" column="dob"/>
+        <property name="ssn" type="java.lang.String" column="ssn"/>
+        <property name="sex" column="sex" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.facilitymanagement.model.user.Sex</param>
+            	<param name="type">12</param>
+            </type>
+        </property>
+    </class>    
+</hibernate-mapping>

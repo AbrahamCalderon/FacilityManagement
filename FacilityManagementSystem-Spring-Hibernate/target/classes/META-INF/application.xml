@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<description>Wiring the dependencies for Facility Management Project.</description>
+
+	<context:component-scan base-package="com.facilitymangaement" />
+
+	<!-- FACILITY PACKAGE -->
+
+	<!--  ComplexFacility class-->
+	<bean id="owner" class="com.facilitymanagement.model.user.Owner" scope="prototype"/>
+	<bean id="unitFeature" class="com.facilitymanagement.model.facility.UnitFeature" scope="prototype"/>
+	<bean id="facilityFeature" class="com.facilitymanagement.model.facility.FacilityFeature" scope="prototype"/>
+	<bean id="inspection" class="com.facilitymanagement.model.facility.Inspection" scope="prototype"/>
+
+	<bean id="facilitydetail" class="com.facilitymanagement.model.facility.FacilityDetail" scope="prototype"/>
+
+	<bean id="tenant" class="com.facilitymanagement.model.user.Tenant" scope="prototype"/>
+
+	<bean id="aptunitdetail" class="com.facilitymanagement.model.facility.AptUnitDetail" scope="prototype"/>
+
+	<bean id="reservation" class="com.facilitymanagement.model.facility.Reservation" scope="prototype"/>
+
+	<bean id="lease" class="com.facilitymanagement.model.facility.Lease" scope="prototype">
+		<property name="tenant" ref ="tenant"/>
+	</bean>
+
+	<bean id="apartmentunit" class="com.facilitymanagement.model.facility.AptUnit" scope="prototype">
+		<property name="leases">
+			<list/>
+		</property>
+		<property name="futureReservations">
+			<list/>
+		</property> 
+		<property name="features">
+			<list/>
+		</property>
+		<property name="detail" ref="aptunitdetail"/>
+	</bean>
+
+	<bean id="complexfacility" class="com.facilitymanagement.model.facility.ComplexFacility" scope="prototype">
+		<property name="detail" ref="facilitydetail"/>
+		<property name="owner" ref="owner"/>
+		<property name="inspections">
+			<list/>
+		</property>
+		<property name="units">
+			<list/>
+		</property>
+		<property name="features">
+			<list/>
+		</property>
+	</bean>
+
+	<!-- Management Package -->    
+    <!-- enums -->
+    <bean id="maintenanceCat" class="com.facilitymanagement.model.maintenance.MaintenanceCat" scope="prototype" />
+	<bean id="orderStatus" class="com.facilitymanagement.model.maintenance.MOrderStatus" scope="prototype" />
+    <bean id="orderTerm" class="com.facilitymanagement.model.maintenance.OrderTerm" scope="prototype" />
+    <bean id="severity" class="com.facilitymanagement.model.maintenance.SeverityLevel" scope="prototype" />
+    <!-- enums end -->
+
+    <bean id="request" class="com.facilitymanagement.model.facility.Request" scope="prototype">
+		<property name="facility" ref="complexfacility" />
+		<property name="unit" ref="apartmentunit" />
+    </bean>
+    
+    <bean id="maintenanceJob" class="com.facilitymanagement.model.maintenance.MaintenanceJob" scope="prototype"/>
+
+    <bean id="orderDetail" class="com.facilitymanagement.model.maintenance.MaintOrderDetail" scope="prototype">
+    	<property name="job" ref="maintenanceJob" />
+    	<property name="term" value="SINGLE" /><!--e-->
+    </bean>
+
+    <bean id="maintenanceOrder" class="com.facilitymanagement.model.maintenance.MaintenanceOrder" scope="prototype">
+		<property name="orderDetails">
+           <list/>	
+        </property>
+		<property name="request" ref="request" />
+	</bean>
+
+    <bean id="maintenanceLog" class="com.facilitymanagement.model.maintenance.MaintenanceLog" scope="prototype">
+	 	<property name="order" ref="maintenanceOrder" />
+    </bean>
+    
+    <!-- Services -->
+    <bean id="facilityService" class="com.facilitymanagement.model.service.FacilityService" scope="prototype" />
+    <bean id="maintenanceService" class="com.facilitymanagement.model.service.MaintenanceService" scope="prototype" />
+    <bean id="usageService" class="com.facilitymanagement.model.service.UsageService" scope="prototype" />
+    <bean id="userService" class="com.facilitymanagement.model.service.UserService" scope="prototype" />
+    <bean id="utilityService" class="com.facilitymanagement.model.service.UtilityService" scope="prototype" />
+
+</beans>

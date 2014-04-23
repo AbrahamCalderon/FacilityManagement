@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="com.facilitymanagement.model.maintenance">
+	<class name="MaintenanceJob" table="maintenancejob">
+		<id name="detailId" type="java.lang.Integer" column="detailId"/>
+		<property name="jobId" type="java.lang.Integer" column="jobId"/>
+		<property name="jobDescription" type="string" column="jobDescription"/>
+		<property name="jobPerformer" type="string" column="jobPerformer"/>
+		<property name="price" type="double" column="cost"/>
+	</class>
+</hibernate-mapping>

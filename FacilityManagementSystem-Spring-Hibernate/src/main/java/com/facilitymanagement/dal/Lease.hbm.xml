@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facilitymanagement.model.facility">
+    <class name="Lease" table="livingagreement">
+        <id name="leaseId" type="java.lang.String" column="leaseId"/>
+        <property name="leaseTerm" column="lease" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.facilitymanagement.model.facility.LeaseTerm</param>
+            	<param name="type">12</param>
+            </type>
+        </property>
+        <property name="rent" type="java.lang.Double" column="rentCost"/>
+        <property name="moveInDate" type="java.sql.Date" column="moveInDate"/>
+        <property name="moveOutDate" type="java.sql.Date" column="moveOutDate"/>
+        <one-to-one name="tenant" class="com.facilitymanagement.model.user.Tenant" cascade="save-update"/> 
+    </class>
+</hibernate-mapping>

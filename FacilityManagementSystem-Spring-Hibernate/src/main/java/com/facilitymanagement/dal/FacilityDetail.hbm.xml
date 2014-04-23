@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facilitymanagement.model.facility">
+    <class name="FacilityDetail" table="facilitydetail">
+        <id name="facId" type="java.lang.Integer" column="facilityid"/>
+        <property name="facDetId" type="integer" column="detailid"/>
+        <property name="yearBuilt" type="java.lang.String" column="yearbuilt"/>
+        <!-- 
+        <list name="usages" table="usages" cascade="all">
+            <key column="detailid" not-null="true"/>
+            <list-index column="idx"/>
+	        <element type="string" column="facilityUsages"/>
+        </list>-->
+        <property name="usage" type="java.lang.String" column="fac_usage"/>
+        
+        <property name="additionalDetails" type="string" column="additionalInfo" not-null="false"/>
+    </class>
+</hibernate-mapping>

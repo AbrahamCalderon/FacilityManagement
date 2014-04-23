@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+ 
+<hibernate-configuration>
+    <session-factory>
+        
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/facility</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">66rp54</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+        
+         <!-- POSTGRESQL -
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost/facility2</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">66rp54</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+         -->   
+        
+		<!-- Echo all executed SQL statements -->
+ 		<property name="show_sql">true</property>
+ 
+ 		<!-- Enable Hibernate's automatic session context management -->
+ 		<property name="current_session_context_class">thread</property>
+ 		
+		<!-- Mapping resource configuration files -->  
+ 		<mapping resource="com/facilitymanagement/dal/Tenant.hbm.xml"/>
+ 		<mapping resource="com/facilitymanagement/dal/UnitFeature.hbm.xml"/> 
+ 		<mapping resource="com/facilitymanagement/dal/UnitDetail.hbm.xml"/> 	
+ 		<mapping resource="com/facilitymanagement/dal/OrderDetail.hbm.xml"/>
+ 		<mapping resource="com/facilitymanagement/dal/Owner.hbm.xml"/> 
+ 		<mapping resource="com/facilitymanagement/dal/Inspection.hbm.xml"/> 
+ 		<mapping resource="com/facilitymanagement/dal/Lease.hbm.xml"/>
+ 		<mapping resource="com/facilitymanagement/dal/Request.hbm.xml"/> 	
+ 		<mapping resource="com/facilitymanagement/dal/Reservation.hbm.xml"/>
+ 		<mapping resource="com/facilitymanagement/dal/FacilityDetail.hbm.xml"/> 
+ 		<mapping resource="com/facilitymanagement/dal/FacilityFeature.hbm.xml"/> 
+ 		<mapping resource="com/facilitymanagement/dal/MaintenanceJob.hbm.xml"/> 
+ 		<mapping resource="com/facilitymanagement/dal/MaintenanceLog.hbm.xml"/> 		
+ 		<mapping resource="com/facilitymanagement/dal/MaintenanceOrder.hbm.xml"/>
+ 		<mapping resource="com/facilitymanagement/dal/AptUnit.hbm.xml"/>	
+ 		<mapping resource="com/facilitymanagement/dal/ComplexFacility.hbm.xml"/> 
+    </session-factory>
+ 
+</hibernate-configuration>

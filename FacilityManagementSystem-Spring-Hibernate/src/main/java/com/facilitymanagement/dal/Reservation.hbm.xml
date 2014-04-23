@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facilitymanagement.model.facility">
+    <class name="Reservation" table="reservation">
+        <id name="reservationId" type="java.lang.Integer" column="reservationid"/>
+        <property name="reservationMadeDate" type="java.sql.Date" column="reserveddate"/>
+        <property name="checkInDate" type="java.sql.Date" column="checkindate"/>
+        <property name="checkOutDate" type="java.sql.Date" column="checkoutdate"/>
+    </class>
+</hibernate-mapping>

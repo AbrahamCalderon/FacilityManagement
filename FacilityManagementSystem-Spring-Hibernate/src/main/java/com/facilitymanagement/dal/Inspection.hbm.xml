@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facilitymanagement.model.facility">
+    <class name="Inspection" table="inspection">
+	    <id name="inspectionId" type="java.lang.Integer" column="inspectionid"/>
+        <property name="category" column="category" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.facilitymanagement.model.facility.InspectionType</param>
+            	<param name="type">12</param>
+            </type>
+        </property>
+        <property name="date" type="java.sql.Date" column="date"/>
+        <property name="inspector" type="java.lang.String" column="inspectorname"/>      
+        <property name="result" column="result" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.facilitymanagement.model.facility.InspectionResult</param>
+            	<param name="type">12</param>
+            </type>
+        </property>
+        <property name="comment" type="java.lang.String" column="comment"/>
+    </class>
+</hibernate-mapping>

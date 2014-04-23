@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="com.facilitymanagement.model.maintenance">
+	<class name="MaintenanceLog" table="maintenancelog">
+		<id name="logId" type="java.lang.Integer" column="log_id"/>
+		<property name="severityLevel" column="severity_level" not-null="true">
+		    <type name="org.hibernate.type.EnumType">
+		        <param name="enumClass">com.facilitymanagement.model.maintenance.SeverityLevel</param>
+		        <param name="type">12</param><!-- 12 is java.sql.Types.VARCHAR -->
+		    </type> 
+		</property>
+		<property name="date" type="java.sql.Date" column="date"/>
+		<property name="duration" type="java.lang.Integer" column="duration_min"/>
+		<many-to-one name="order" class="com.facilitymanagement.model.maintenance.MaintenanceOrder"
+		    column="orderId"
+		    unique="true"
+		    not-null="true"
+		    cascade="all"></many-to-one>
+	</class>
+</hibernate-mapping>

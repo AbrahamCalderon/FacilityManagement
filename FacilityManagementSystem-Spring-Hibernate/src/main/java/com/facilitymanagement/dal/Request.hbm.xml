@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facilitymanagement.model.facility">
+    <class name="Request" table="request">
+        <id name="requestId" type="java.lang.Integer" column="requestId"/>
+        <property name="dateRequested" type="java.sql.Date" column="dateReported"/>
+        <property name="timeRequested" type="java.sql.Time" column="time"/>
+        <property name="category" column="maintCategory" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.facilitymanagement.model.maintenance.MaintenanceCat</param>
+            	<param name="type">12</param>
+            </type>
+        </property> 
+        <property name="description" type="java.lang.String" column="probDescription"/>
+        <property name="requester" type="java.lang.String" column="requesterName"/>
+        <property name="requestStatus" column="status" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.facilitymanagement.model.facility.RequestStatus</param>
+            	<param name="type">12</param>
+            </type>
+        </property> 
+		<many-to-one name="facility" class="com.facilitymanagement.model.facility.ComplexFacility"
+		    column="facilityId"
+		    unique="true"
+		    not-null="true"
+		    cascade="all"></many-to-one>
+		<many-to-one name="unit" class="com.facilitymanagement.model.facility.AptUnit"
+		    column="unitId"
+		    unique="true"
+		    not-null="false"
+		    cascade="all"></many-to-one>
+    </class>
+</hibernate-mapping>

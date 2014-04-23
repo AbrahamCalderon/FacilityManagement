@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facilitymanagement.model.user">
+    <class name="Owner" table="owner">
+        <id name="facilityId" type="java.lang.Integer" column="facilityId"/>
+        <property name="ownerId" type="java.lang.Integer" column="ownerId"/>
+        <property name="firstName" type="java.lang.String" column="firstname"/>
+        <property name="lastName" type="java.lang.String" column="lastname"/>
+        <property name="company" type="java.lang.String" column="company"/>
+    </class>
+</hibernate-mapping>

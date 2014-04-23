@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.facilitymanagement.model.facility">
+    <class name="ComplexFacility" table="complexfacility">
+        <id name="facilityId" type="java.lang.Integer" column="fid"/>
+        <property name="facilityName" type="java.lang.String" column="facilityname"/>
+        <property name="street" type="java.lang.String" column="street"/>
+        <property name="city" type="java.lang.String" column="city"/>
+        <property name="state" type="java.lang.String" column="state"/>
+        <property name="zip" type="java.lang.String" column="zip"/>
+        <one-to-one name="detail" class="com.facilitymanagement.model.facility.FacilityDetail" 
+            cascade="all"/>
+        <one-to-one name="owner" class="com.facilitymanagement.model.user.Owner" 
+            cascade="all"/>
+        <property name="facilityStatus" column="status" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.facilitymanagement.model.facility.FacilityStatus</param>
+            	<param name="type">12</param>
+            </type>
+        </property>        
+	    <list name="inspections" table="inspection" cascade="all">
+	        <key column="facilityId" not-null="true"/>
+         	<list-index column="idx"/><!-- inspectionid -->
+	        <one-to-many class="com.facilitymanagement.model.facility.Inspection"/>
+	    </list>
+	    <list name="units" table="apartmentunit" cascade="all">
+	        <key column="facilityId" not-null="true"/>
+	        <list-index column="idx"/><!-- unitid -->
+	        <one-to-many class="com.facilitymanagement.model.facility.AptUnit"/>
+	    </list>
+	    <list name="features" table="facility_feature" cascade="all">
+	        <key column="facility_id" not-null="true"/>
+	        <list-index column="idx"/><!-- feature_id -->
+	        <one-to-many class="com.facilitymanagement.model.facility.FacilityFeature"/>
+	    </list>	    
+    </class>
+</hibernate-mapping>
